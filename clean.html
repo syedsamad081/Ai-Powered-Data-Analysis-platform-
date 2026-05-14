@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Data Cleaning — AI Data Platform{% endblock %}
+
+{% block content %}
+<header class="page-header">
+  <h1 class="page-title"><span class="text-gradient">Data Cleaning</span></h1>
+  <p class="page-subtitle">Select operations to apply, then click Apply Cleaning.</p>
+</header>
+
+<div id="error-box" class="error-box" hidden></div>
+
+<div class="grid grid-clean">
+  <div>
+    <div class="row-between mb-sm">
+      <p class="muted-uppercase">Select Operations</p>
+      <span id="selected-count" class="badge violet">0 selected</span>
+    </div>
+    <div id="operations-list"></div>
+  </div>
+
+  <aside class="card pad-md sticky">
+    <h3 class="info-title">Apply Cleaning</h3>
+    <div id="selected-summary" class="selected-summary">
+      <p class="muted">No operations selected.</p>
+    </div>
+    <button id="btn-apply" class="btn btn-primary block" disabled>✨ Apply Cleaning</button>
+
+    <div id="clean-result" hidden>
+      <div class="success-box mt-md">
+        <p class="success-title">✅ Cleaning complete</p>
+        <div class="muted small">
+          <p>Rows removed: <span id="r-rows" class="text-light"></span></p>
+          <p>Cols removed: <span id="r-cols" class="text-light"></span></p>
+          <p>New shape: <span id="r-shape" class="text-light mono"></span></p>
+        </div>
+      </div>
+      <a id="btn-download" href="/download-cleaned" class="btn btn-cyan block mt-sm">⬇ Download Cleaned CSV</a>
+      <a href="/visualize" class="btn btn-primary block mt-sm">Continue to Visualization →</a>
+    </div>
+  </aside>
+</div>
+
+<section id="preview-section" class="mt-lg" hidden>
+  <h2 class="info-title">Cleaned Dataset Preview</h2>
+  <div id="preview-container" class="mt-sm"></div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/clean.js') }}"></script>
+{% endblock %}

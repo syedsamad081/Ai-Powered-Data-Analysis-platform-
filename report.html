@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}AI Report — AI Data Platform{% endblock %}
+
+{% block content %}
+<header class="page-header row-between">
+  <div>
+    <h1 class="page-title"><span class="text-gradient">AI Report</span></h1>
+    <p class="page-subtitle">Gemini-powered structured analysis of your dataset.</p>
+  </div>
+  <button id="btn-generate" class="btn btn-primary">🤖 Generate AI Report</button>
+</header>
+
+<div id="error-box" class="error-box" hidden></div>
+
+<div id="empty-state" class="card empty">
+  Click <strong>"Generate AI Report"</strong> to get a Gemini-powered analysis.
+  <p class="muted small mt-sm">
+    Requires a valid <code>GEMINI_API_KEY</code> in <code>.env</code>. Without it, a basic auto-generated report is shown.
+  </p>
+</div>
+
+<section id="report-section" hidden>
+  <div id="meta-strip" class="grid grid-4 gap-sm"></div>
+
+  <div class="row mt-md">
+    <button id="btn-export-md" class="btn btn-secondary">⬇ Export Markdown</button>
+    <button id="btn-print-pdf" class="btn btn-secondary">⬇ Print / Save PDF</button>
+    <a href="/download-cleaned" class="btn btn-cyan">⬇ Download Cleaned CSV</a>
+  </div>
+
+  <div class="card pad-lg mt-md">
+    <article id="report-content" class="report-content"></article>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/report.js') }}"></script>
+{% endblock %}

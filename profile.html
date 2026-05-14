@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Data Profile — AI Data Platform{% endblock %}
+
+{% block content %}
+<header class="page-header row-between">
+  <div>
+    <h1 class="page-title"><span class="text-gradient">Data Profile</span></h1>
+    <p class="page-subtitle">Automatic statistical analysis of your dataset.</p>
+  </div>
+  <button id="btn-analyze" class="btn btn-primary">▶ Run Analysis</button>
+</header>
+
+<div id="error-box" class="error-box" hidden></div>
+
+<div id="empty-state" class="card empty">
+  Click <strong>"Run Analysis"</strong> after uploading a dataset to view the profile.
+</div>
+
+<section id="profile-result" hidden>
+  <div class="grid grid-5 gap-md">
+    <div class="card stat"><div class="stat-icon violet">🔢</div><div><p class="stat-label">Total Rows</p><p id="p-rows" class="stat-value"></p></div></div>
+    <div class="card stat"><div class="stat-icon cyan">📋</div><div><p class="stat-label">Columns</p><p id="p-cols" class="stat-value"></p></div></div>
+    <div class="card stat"><div class="stat-icon red">🔴</div><div><p class="stat-label">Missing Cells</p><p id="p-missing" class="stat-value"></p><p id="p-missing-sub" class="stat-sub"></p></div></div>
+    <div class="card stat"><div class="stat-icon amber">🔁</div><div><p class="stat-label">Duplicates</p><p id="p-dups" class="stat-value"></p></div></div>
+    <div class="card stat"><div class="stat-icon emerald">📊</div><div><p class="stat-label">Numeric Cols</p><p id="p-num" class="stat-value"></p></div></div>
+  </div>
+
+  <div class="grid grid-3 gap-md mt-lg">
+    <div class="card pad-md"><h3 class="info-title">🔢 Numeric</h3><div id="info-numeric" class="badges"></div></div>
+    <div class="card pad-md"><h3 class="info-title">🏷️ Categorical</h3><div id="info-categorical" class="badges"></div></div>
+    <div class="card pad-md"><h3 class="info-title">📅 Datetime</h3><div id="info-datetime" class="badges"></div></div>
+  </div>
+
+  <div class="card pad-md mt-lg" id="missing-section" hidden>
+    <h3 class="info-title">Missing Values per Column</h3>
+    <div id="missing-bars" class="missing-bars"></div>
+  </div>
+
+  <div class="card mt-lg" id="describe-section" hidden>
+    <div class="card-head"><h3 class="info-title">Statistical Summary</h3></div>
+    <div class="table-scroll">
+      <table id="describe-table" class="data-table"></table>
+    </div>
+  </div>
+
+  <div class="row-end mt-lg">
+    <a href="/clean" class="btn btn-primary">Continue to Data Cleaning →</a>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+{% endblock %}

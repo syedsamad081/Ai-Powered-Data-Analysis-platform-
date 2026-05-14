@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}AI Data Platform{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-icon">⚡</div>
+      <div class="brand-text">
+        <p class="brand-title">AI Data Platform</p>
+        <p class="brand-sub">Clean · Visualize · Report</p>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a href="/"          class="nav-item {% if active=='upload' %}active{% endif %}"><span>📁</span> Upload <span class="step">1</span></a>
+      <a href="/profile"   class="nav-item {% if active=='profile' %}active{% endif %}"><span>📊</span> Data Profile <span class="step">2</span></a>
+      <a href="/clean"     class="nav-item {% if active=='clean' %}active{% endif %}"><span>🧹</span> Data Cleaning <span class="step">3</span></a>
+      <a href="/visualize" class="nav-item {% if active=='visualize' %}active{% endif %}"><span>📈</span> Visualize <span class="step">4</span></a>
+      <a href="/report"    class="nav-item {% if active=='report' %}active{% endif %}"><span>🤖</span> AI Report <span class="step">5</span></a>
+    </nav>
+
+    <div class="brand-footer">
+      Powered by <span class="accent">Gemini AI</span>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="container">
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+
+  <div id="loader" class="loader-overlay" hidden>
+    <div class="loader-card">
+      <div class="spinner"></div>
+      <div>
+        <p id="loader-message" class="loader-title">Processing…</p>
+        <p class="loader-sub">This may take a moment…</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/common.js') }}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

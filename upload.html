@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Upload — AI Data Platform{% endblock %}
+
+{% block content %}
+<header class="page-header">
+  <h1 class="page-title"><span class="text-gradient">Upload Dataset</span></h1>
+  <p class="page-subtitle">Upload a CSV, Excel, DOCX, or PDF file to begin. We'll preview your data instantly.</p>
+</header>
+
+<div id="upload-dropzone" class="dropzone">
+  <input id="file-input" type="file" accept=".csv,.xlsx,.xls,.docx,.pdf" hidden />
+  <div class="drop-icon">📁</div>
+  <p class="drop-title">Drag &amp; drop your dataset</p>
+  <p class="drop-sub">or <span class="link">browse files</span></p>
+  <div class="drop-tags">
+    <span class="badge">.CSV</span>
+    <span class="badge">.XLSX</span>
+    <span class="badge">.XLS</span>
+    <span class="badge">.DOCX</span>
+    <span class="badge">.PDF</span>
+  </div>
+</div>
+
+<div id="error-box" class="error-box" hidden></div>
+
+<section id="upload-result" hidden>
+  <div class="grid grid-4 gap-md mt-lg">
+    <div class="card stat"><div class="stat-icon violet">📄</div><div><p class="stat-label">File</p><p id="stat-file" class="stat-value"></p></div></div>
+    <div class="card stat"><div class="stat-icon cyan">🔢</div><div><p class="stat-label">Rows</p><p id="stat-rows" class="stat-value"></p></div></div>
+    <div class="card stat"><div class="stat-icon emerald">📋</div><div><p class="stat-label">Columns</p><p id="stat-cols" class="stat-value"></p></div></div>
+    <div class="card stat"><div class="stat-icon amber">🏷️</div><div><p class="stat-label">Features</p><p id="stat-features" class="stat-value"></p></div></div>
+  </div>
+
+  <div id="preview-container" class="mt-lg"></div>
+
+  <div class="row-end mt-lg">
+    <a href="/profile" class="btn btn-primary">Continue to Data Profiling →</a>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/upload.js') }}"></script>
+{% endblock %}

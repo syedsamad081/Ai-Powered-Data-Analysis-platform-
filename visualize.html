@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Visualize — AI Data Platform{% endblock %}
+
+{% block content %}
+<header class="page-header row-between">
+  <div>
+    <h1 class="page-title"><span class="text-gradient">Visualization Builder</span></h1>
+    <p class="page-subtitle">Auto-recommended charts rendered server-side with seaborn &amp; matplotlib.</p>
+  </div>
+  <button id="btn-generate" class="btn btn-primary">▶ Generate Charts</button>
+</header>
+
+<div id="error-box" class="error-box" hidden></div>
+
+<div id="empty-state" class="card empty">
+  Click <strong>"Generate Charts"</strong> to auto-detect and render recommended visualizations.
+</div>
+
+<section id="charts-section" hidden>
+  <div class="card pad-md">
+    <p class="muted-uppercase mb-sm"><span id="chart-count">0</span> charts recommended — click to toggle visibility</p>
+    <div id="chart-toggles" class="chart-toggles"></div>
+  </div>
+
+  <div id="chart-grid" class="chart-grid mt-lg"></div>
+
+  <div class="row-end mt-lg">
+    <a href="/report" class="btn btn-primary">Continue to AI Report →</a>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/visualize.js') }}"></script>
+{% endblock %}
