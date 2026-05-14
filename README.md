@@ -1,4 +1,4 @@
-# AI_Powered  Data Analysis Platform — Final Year Project
+# AI Data Platform — Final Year Project
 
 A web application that lets you upload a dataset (CSV, Excel, Word, or PDF),
 automatically clean it, generate charts, and produce an AI-powered analysis
